@@ -31,23 +31,33 @@
 //  console.log("Server is running on port 5050")
 
 // for showing html page
+
+
 const fs = require("fs");
 
 const HTTP = require("http");
 
 const server = HTTP.createServer((req, res) => {
-  if ((req.url = "/")) {
-    fs.readFile('Home.html', function (error, data) {
+  
 
-      res.writeHead(200,{"content-type":'html/text'})
+   if ((req.url = "/contact")) {
+    fs.readFile('Contact.html', function (error, data) {
+
+      res.writeHead(200,{"content-type":'text/html'})
       res.write(data);
       res.end();
     });
   }
+
+  else if ((req.url = "/")) {
+    fs.readFile("Home.html", function (error, data) {
+    res.writeHead(200, { "content-type": "text/html" });
+    res.write(data);
+    res.end();
+  });
+}
+
 });
 
 server.listen(5050);
 console.log("Server run success");
-
-// fs.readFile("home.html",(error,data)=>{
-//
